@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
+import {PlayersService} from './players/players.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {InMemoryDataService} from './in-memory-data.service';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
-  providers: [],
+  providers: [PlayersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
