@@ -79,6 +79,7 @@ export class PlayerListComponent implements OnInit {
           this.viewAddForm = false;
         }
       );
+    this.router.navigate(['/players']);
   }
 
   onSelectPlayer(player: Player): void {
