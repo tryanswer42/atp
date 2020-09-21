@@ -18,9 +18,10 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playersService.getTopPlayers(this.topNumber).subscribe(topPayers => {
-      this.topPlayers = topPayers;
-    });
+    this.playersService.getTopPlayers(this.topNumber)
+      .subscribe(topPayers => {
+        this.topPlayers = topPayers;
+      });
   }
 
   onSelectPlayer(player: Player): void {

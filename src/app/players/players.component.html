@@ -6,7 +6,8 @@
         <h4 *ngFor="let topPlayer of topPlayers; let i = index"
             [style]="{color: 'dodgerblue', cursor: 'pointer'}"
             (click)="onSelectPlayer(topPlayer)">
-          <span class="badge badge-pill badge-secondary">{{ i + 1}}</span> {{ topPlayer.name }}
+          <span class="badge badge-pill badge-secondary">{{ i + 1}}</span>
+          {{ topPlayer.name }}
         </h4>
       </div>
     </div>
@@ -19,10 +20,13 @@
               id="player"
               type="text"
               class="form-control"
-              ngModel required="required"
-              name="searchName" >
+              ngModel
+              required="required"
+              name="searchName">
           </div>
-          <button type="submit" class="btn btn-default" [disabled]="!f.valid">
+          <button type="submit"
+                  class="btn btn-default"
+                  [disabled]="f.invalid">
             <span class="glyphicon glyphicon-search"></span> Search
           </button>
         </form>

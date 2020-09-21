@@ -28,13 +28,14 @@ export class PlayerListComponent implements OnInit {
       this.searchMode = true;
       this.searchedName = this.route.snapshot.queryParams['searchName'];
     }
-    this.route.params.subscribe((params: Params) => {
-      if (this.route.snapshot.queryParams['searchName']) {
-        this.searchMode = true;
-        this.searchedName = this.route.snapshot.queryParams['searchName'];
-      }
-      this.playersResultTable();
-    });
+    this.route.params
+      .subscribe((params: Params) => {
+        if (this.route.snapshot.queryParams['searchName']) {
+          this.searchMode = true;
+          this.searchedName = this.route.snapshot.queryParams['searchName'];
+        }
+        this.playersResultTable();
+      });
   }
 
   onViewAddForm(): void {
@@ -43,14 +44,15 @@ export class PlayerListComponent implements OnInit {
 
   playersResultTable(): void {
     if (this.searchMode) {
-      this.playersService.getPlayerByName(this.searchedName).subscribe(
-        searchedPlayers => {
-          this.players = searchedPlayers;
-        });
+      this.playersService.getPlayerByName(this.searchedName)
+        .subscribe(
+          searchedPlayers => {
+            this.players = searchedPlayers;
+          });
     } else {
-      this.playersService.getPlayers().subscribe(
-        allPlayers => this.players = allPlayers
-      );
+      this.playersService.getPlayers()
+        .subscribe(allPlayers => this.players = allPlayers
+        );
     }
   }
 
@@ -70,18 +72,18 @@ export class PlayerListComponent implements OnInit {
       this.addForm.value.points,
       this.addForm.value.tournaments
     );
-    this.playersService.addPlayer(player).subscribe(
-      (player: Player) => {
-        this.players.push(player);
-        this.addForm.reset();
-        this.viewAddForm = false;
-      }
-    );
+    this.playersService.addPlayer(player)
+      .subscribe((player: Player) => {
+          this.players.push(player);
+          this.addForm.reset();
+          this.viewAddForm = false;
+        }
+      );
   }
 
   onSelectPlayer(player: Player): void {
     if (this.deleteMode) {
-      // wait for delete
+      // Skip select and run delete
     } else {
       this.router.navigate(['/players', player.id, 'details']);
     }
