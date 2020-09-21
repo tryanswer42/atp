@@ -20,7 +20,7 @@ export class PlayersService {
   getPlayers(): Observable<Player[]> {
     return this.http.get<Player[]>(this.playersUrl).pipe(map(players => {
         return players.sort((a, b) => {
-            if (a.point > b.point) {
+            if (a.point < b.point) {
               return 1;
             } else if (a.point === b.point) {
               return 0;
@@ -35,7 +35,8 @@ export class PlayersService {
   }
 
   getTopPlayers(top: number): Observable<Player[]> {
-    return this.getPlayers().pipe(map(players => players.slice(0, top)),
+    return this.getPlayers().
+    pipe(map(players => players.slice(0, top)),
       catchError(this.handleError<Player[]>('getTopPlayers', [])));
   }
 
@@ -62,7 +63,8 @@ export class PlayersService {
   }
 
   addPlayer(player: Player): Observable<Player> {
-    return this.http.post<Player>(this.playersUrl, player, this.httpOptions).pipe(
+    return this.http.post<Player>(this.playersUrl, player, this.httpOptions)
+      .pipe(
       catchError(this.handleError<Player>('addPlayer'))
     );
   }
@@ -78,7 +80,8 @@ export class PlayersService {
     const id = typeof player === 'number' ? player : player.id;
     const url = `${this.playersUrl}/${id}`;
 
-    return this.http.delete<Player>(url, this.httpOptions).pipe(
+    return this.http.delete<Player>(url, this.httpOptions)
+      .pipe(
       catchError(this.handleError<Player>('deletePlayer'))
     );
   }

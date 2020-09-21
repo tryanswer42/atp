@@ -5,10 +5,10 @@ export class Player {
   age: number;
   point: number;
   tournaments: number;
-  id: number;
+  id?: number;
 
 
-  constructor(name: string, country: string, age: number, point: number, tournaments: number, id: number) {
+  constructor(name: string, country: string, age: number, point: number, tournaments: number, id?: number) {
     this.name = name;
     this.country = country;
     this.age = age;

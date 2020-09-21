@@ -1,1 +1,106 @@
-<p>player-list works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Players</h2>
+        <button
+          type="button"
+          class="btn btn-primary btn-xs"
+          (click)="onViewAddForm()">{{ !viewAddForm ? 'Show' : 'Hide' }} AddForm
+        </button>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 2em" *ngIf="viewAddForm">
+      <div class="col-xs-12">
+        <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmitPlayer()">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Player name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name"
+                     ngModel
+                     name="name"
+                     required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="country">Country</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="country"
+                     ngModel
+                     name="country"
+                     required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="age">Age</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="age"
+                     ngModel
+                     name="age"
+                     required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="points">Points</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="points"
+                     ngModel
+                     name="points"
+                     required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="tournaments">Tournaments</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="tournaments"
+                     ngModel
+                     name="tournaments"
+                     required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary btn-xs" [disabled]="f.pristine || !f.valid">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Age</th>
+            <th>Points</th>
+            <th>Tournaments Played</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let player of players; let i = index" (click)="onSelectPlayer(player)">
+
+            <td>{{ player.id }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.country }}</td>
+            <td>{{ player.age }}</td>
+            <td>{{ player.point }}</td>
+            <td>{{ player.tournaments }}</td>
+
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger btn-xs"
+                (click)="onDeletePlayer(player)">X
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
