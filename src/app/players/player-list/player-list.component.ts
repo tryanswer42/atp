@@ -84,6 +84,7 @@ export class PlayerListComponent implements OnInit {
   onSelectPlayer(player: Player): void {
     if (this.deleteMode) {
       // Skip select and run delete
+      this.deleteMode = false;
     } else {
       this.router.navigate(['/players', player.id, 'details']);
     }

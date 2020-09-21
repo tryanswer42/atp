@@ -10,7 +10,7 @@
         </button>
       </div>
     </div>
-    <div class="row" style="margin-top: 2em" *ngIf="viewAddForm">
+    <div class="row"  *ngIf="viewAddForm">
       <div class="col-xs-12">
         <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmitPlayer()">
           <div class="form-group">
@@ -83,7 +83,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let player of players; let i = index" (click)="onSelectPlayer(player)">
+          <tr *ngFor="let player of players; let i = index" (click)="onSelectPlayer(player)" style="cursor: pointer">
 
             <td>{{ player.id }}</td>
             <td>{{ player.name }}</td>
